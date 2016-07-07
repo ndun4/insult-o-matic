@@ -1,16 +1,20 @@
 #!bottle/bin/python
 
+#set env path above to your desired environment
+
 from random import randint
 
+#the path of your desired insult sources
 ADJ_SOURCE = 'insults-adj.txt'
 NOUN_SOURCE = 'insults-nouns.txt'
 
 
-
+#wrapper for generating the random insults
 def get(type):
 	type = gen_random(type)
 	return type
 
+#wrapper for adding new insults to source files **not finished**
 def put(type):
 	if type == 'noun':
 		with open('insults-nouns.txt', 'a') as nouns:
@@ -18,25 +22,27 @@ def put(type):
 
 
 
-
+#imports everything from adjective source into memory
 def adj():
 	with open(ADJ_SOURCE, 'r') as adjectives:
 		data = adjectives.readlines()
 		adjlist = [line[:-1] for line in data]
 		return adjlist
 
+#imports everything from noun source into memory
 def noun():
 	with open(NOUN_SOURCE, 'r') as nouns:
 		data = nouns.readlines()
 		nounlist = [line[:-1] for line in data]
 		return nounlist		
 
-
+#generates random word from either list
 def gen_random(type):
 	all = len(type) - 1
 	random = randint(0, all)
 	return(type[random])
 
+#main script
 def insult_me():
 	great_insult = [get(adj), get(adj), get(noun)]
 	print('You are a ' + ' '.join(great_insult))
@@ -44,5 +50,6 @@ def insult_me():
 
 adj = adj()
 noun = noun()
-	
+
+#LIFTOFF!
 insult_me()

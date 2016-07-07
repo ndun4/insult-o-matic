@@ -6,6 +6,7 @@ A random insult generator for the modern masochist.
 ##Features
 
 *Pulls insulting words from associated text files
+
 *Randomly generates a (pretty lame) insult
 
 ##Configuration
@@ -28,5 +29,7 @@ The defaults are `insults-adj.txt` and `insults-nouns.txt`, respectively.
 ## Goals for Version 0.2
 
 *Add insults to the insult source pages with command line arguments
+
 *More configuration options
+
 *A little bit of clean up

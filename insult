@@ -1,0 +1,48 @@
+#!bottle/bin/python
+
+from random import randint
+
+ADJ_SOURCE = 'insults-adj.txt'
+NOUN_SOURCE = 'insults-nouns.txt'
+
+
+
+def get(type):
+	type = gen_random(type)
+	return type
+
+def put(type):
+	if type == 'noun':
+		with open('insults-nouns.txt', 'a') as nouns:
+			add = nouns.write('''newinsult''')
+
+
+
+
+def adj():
+	with open(ADJ_SOURCE, 'r') as adjectives:
+		data = adjectives.readlines()
+		adjlist = [line[:-1] for line in data]
+		return adjlist
+
+def noun():
+	with open(NOUN_SOURCE, 'r') as nouns:
+		data = nouns.readlines()
+		nounlist = [line[:-1] for line in data]
+		return nounlist		
+
+
+def gen_random(type):
+	all = len(type) - 1
+	random = randint(0, all)
+	return(type[random])
+
+def insult_me():
+	great_insult = [get(adj), get(adj), get(noun)]
+	print('You are a ' + ' '.join(great_insult))
+	
+
+adj = adj()
+noun = noun()
+	
+insult_me()
